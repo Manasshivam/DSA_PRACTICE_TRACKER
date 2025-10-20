@@ -1,1 +1,16 @@
+class Solution:
+    def SecondLargest(self, nums):
+        if len(num) < 2:   # not enough elements
+            return -1
+
+        highest = max(nums)
+        second_highest = float("-inf")
+
+        for num in nums:
+            if num != highest and num > second_highest:
+                second_highest = num
+
+        if second_highest == float("-inf"):  # means no valid second largest
+            return -1
+        return second_highest
 
