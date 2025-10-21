@@ -1,0 +1,34 @@
+class Solution:
+    def findUnion(self, a, b):
+        i, j = 0, 0
+        n, m = len(a), len(b)
+        union = []
+        
+        while i < n and j < m:
+            if a[i] < b[j]:
+                if not union or union[-1] != a[i]:
+                    union.append(a[i])
+                i += 1
+            elif a[i] > b[j]:
+                if not union or union[-1] != b[j]:
+                    union.append(b[j])
+                j += 1
+            else:  # a[i] == b[j]
+                if not union or union[-1] != a[i]:
+                    union.append(a[i])
+                i += 1
+                j += 1
+        
+        # Add remaining elements of a[]
+        while i < n:
+            if not union or union[-1] != a[i]:
+                union.append(a[i])
+            i += 1
+        
+        # Add remaining elements of b[]
+        while j < m:
+            if not union or union[-1] != b[j]:
+                union.append(b[j])
+            j += 1
+        
+        return union
