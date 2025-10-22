@@ -1,0 +1,16 @@
+class Solution:
+    def longestSubarray(self, arr, k):  
+        prefix_sum = 0   # keeps running total of elements so far
+        mp = {}          
+        max_len = 0      
+        for i in range(len(arr)):
+            prefix_sum += arr[i]   # update running sum
+            if prefix_sum == k:
+                max_len = max(max_len, i + 1)
+            if (prefix_sum - k) in mp:
+                # length = i - j
+                max_len = max(max_len, i - mp[prefix_sum - k])
+            if prefix_sum not in mp:
+                mp[prefix_sum] = i
+
+        return max_len
