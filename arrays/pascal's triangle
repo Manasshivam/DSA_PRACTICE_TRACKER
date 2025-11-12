@@ -1,0 +1,19 @@
+from typing import List
+
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        if numRows == 0:
+            return []
+
+        result = [[1]]  # first row
+
+        for i in range(1, numRows):
+            prev_row = result[-1]  # last row in result
+            row = [1]  # first element
+            # build the middle elements
+            for j in range(1, i):
+                row.append(prev_row[j-1] + prev_row[j])
+            row.append(1)  # last element
+            result.append(row)
+
+        return result
